@@ -198,6 +198,7 @@ target_link_libraries(leveldb
 )
 
 install(TARGETS leveldb
+	EXPORT leveldb-targets
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib)
@@ -273,3 +274,10 @@ LEVELDB_ADD_TEST(version_set  db/version_set_test.cc)
 LEVELDB_ADD_TEST(filter_block table/filter_block_test.cc)
 LEVELDB_ADD_TEST(bloom        util/bloom_test.cc)
 LEVELDB_ADD_TEST(hash         util/hash_test.cc)
+
+# Installation
+configure_file(leveldb-config.cmake.in leveldb-config.cmake @ONLY)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/leveldb-config.cmake DESTINATION cmake)
+
+ # Install the export set for use with the install-tree
+install(EXPORT leveldb-targets DESTINATION cmake COMPONENT dev)

@@ -31,9 +31,10 @@ if(NOT QDB_VERSION)
         endif(NOT BOOST_LIBRARYDIR)
     endif(MSVC)
     
-    add_definitions(-DBOOST_ALL_NO_LIB)
-
-    set(Boost_USE_STATIC_LIBS ON)
+    #add_definitions(-DBOOST_ALL_NO_LIB)
+	add_definitions(-DBOOST_ALL_DYN_LINK)
+	
+    set(Boost_USE_STATIC_LIBS OFF)
     set(Boost_USE_MULTITHREAD ON)
     set(Boost_USE_STATIC_RUNTIME OFF)
 
